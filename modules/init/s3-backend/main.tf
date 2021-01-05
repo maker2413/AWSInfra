@@ -14,4 +14,9 @@ resource "aws_s3_bucket" "tf_bucket" {
 }
 
 # Note 
-resource "aws_s3_bucket_policy" 
+resource "aws_s3_bucket_policy" "tf_bucket" {
+  bucket = "${aws_s3_bucket.tf_bucket.id}"
+
+  policy = <<Policy {
+  }
+}
