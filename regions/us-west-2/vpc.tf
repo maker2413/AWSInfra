@@ -1,16 +1,4 @@
-terraform {
-  backend "s3" {
-    bucket = "squids-tf-state"
-    key = "network/vpc/terraform.tfstate"
-    region = "us-west-2"
-    encrypt = true
-    kms_key_id = "tf-s3"
-  }
-}
-
-provider "aws" {
-  region = var.provider_region
-}
+# --- us-west-2/vpc.tf ---
 
 module "vpc" {
   source = "../../modules/vpc/"
