@@ -1,4 +1,4 @@
-# --- us-west-2/backend.tf ---
+# --- regions/us-west-2/backend.tf ---
 
 terraform {
   backend "s3" {

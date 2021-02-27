@@ -1,1 +1,1 @@
-# --- us-west-2/outputs.tf ---
+# --- regions/us-west-2/outputs.tf ---

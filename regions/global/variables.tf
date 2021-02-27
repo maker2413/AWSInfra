@@ -1,1 +1,1 @@
-# --- us-west-2/variables.tf ---
+# --- regions/global/variables.tf ---

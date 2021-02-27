@@ -1,4 +1,4 @@
-# --- us-west-2/providers.tf ---
+# --- regions/us-west-2/providers.tf ---
 
 terraform {
   required_providers {

@@ -1,4 +1,4 @@
-# --- global/backend.tf ---
+# --- regions/global/backend.tf ---
 
 terraform {
   backend "s3" {

@@ -1,4 +1,4 @@
-# --- global/providers.tf ---
+# --- regions/global/providers.tf ---
 
 terraform {
   required_providers {
