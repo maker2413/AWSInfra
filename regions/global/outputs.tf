@@ -1,0 +1,1 @@
+# --- region/global/outputs.tf ---
