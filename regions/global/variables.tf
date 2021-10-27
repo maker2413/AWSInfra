@@ -12,7 +12,7 @@ variable "aws_region" {
 
 variable "bucket_name" {
   type    = string
-  default = "www.epost.dev"
+  default = "www.ethanp.dev"
 }
 
 variable "index_document" {
