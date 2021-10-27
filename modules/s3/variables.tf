@@ -1,10 +1,15 @@
 # --- modules/s3/variables.tf ---
 
+variable "acl" {
+  type    = string
+  default = "private"
+}
+
 variable "bucket_name" {
   type = string
 }
 
-variable "acl" {
+variable "index_document" {
   type    = string
-  default = "private"
+  default = "index.html"
 }
