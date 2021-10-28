@@ -9,8 +9,8 @@ resource "aws_s3_bucket" "squids_s3" {
   }
 
   tags = {
-    Name        = var.bucket_name
     Environment = terraform.workspace
+    Name        = var.bucket_name
     Project     = "Squids"
   }
 }
