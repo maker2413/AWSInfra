@@ -2,7 +2,7 @@
 
 variable "alternative_domains" {
   type    = list(string)
-  default = ["epost.dev"]
+  default = ["ethanp.dev"]
 }
 
 variable "aws_region" {
@@ -12,7 +12,7 @@ variable "aws_region" {
 
 variable "domain_name" {
   type    = string
-  default = "*.epost.dev"
+  default = "*.ethanp.dev"
 }
 
 variable "validation_method" {
