@@ -5,6 +5,11 @@ variable "acl" {
   default = "public-read"
 }
 
+variable "alias" {
+  type    = string
+  default = "ethanp.dev"
+}
+
 variable "aws_region" {
   type    = string
   default = "us-west-2"

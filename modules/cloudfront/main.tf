@@ -6,6 +6,7 @@ resource "aws_cloudfront_distribution" "squids_s3_distribution" {
     origin_id   = var.domain_name
   }
 
+  aliases             = var.aliases
   enabled             = true
   default_root_object = var.root_object
 

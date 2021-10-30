@@ -4,6 +4,10 @@ variable "acm_arn" {
   type = string
 }
 
+variable "aliases" {
+  type = list(string)
+}
+
 variable "domain_name" {
   type = string
 }
