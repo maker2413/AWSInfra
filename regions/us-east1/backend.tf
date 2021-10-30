@@ -4,7 +4,7 @@ terraform {
   backend "s3" {
     bucket               = "squids-tf-state"
     encrypt              = true
-    key                  = "us-west-2.tfstate"
+    key                  = "us-east-1.tfstate"
     region               = "us-west-2"
     workspace_key_prefix = "regions"
   }
