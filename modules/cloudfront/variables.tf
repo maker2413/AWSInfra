@@ -12,3 +12,8 @@ variable "restriction_type" {
   type    = string
   default = "none"
 }
+
+variable "root_object" {
+  type    = string
+  default = "index.html"
+}

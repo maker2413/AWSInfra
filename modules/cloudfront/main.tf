@@ -6,7 +6,8 @@ resource "aws_cloudfront_distribution" "squids_s3_distribution" {
     origin_id   = var.domain_name
   }
 
-  enabled = true
+  enabled             = true
+  default_root_object = var.root_object
 
   default_cache_behavior {
     allowed_methods        = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]

@@ -5,7 +5,7 @@ data "terraform_remote_state" "acm" {
   workspace = terraform.workspace
   config = {
     bucket               = "squids-tf-state"
-    key                  = "us-west-2.tfstate"
+    key                  = "us-east-1.tfstate"
     region               = "us-west-2"
     workspace_key_prefix = "regions"
   }
