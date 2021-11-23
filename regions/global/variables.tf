@@ -22,5 +22,5 @@ variable "bucket_name" {
 
 variable "index_document" {
   type    = string
-  default = "README.html"
+  default = "index.html"
 }
