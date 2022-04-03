@@ -1,3 +1,0 @@
-[submodule "modules/vpc"]
-        path = modules/vpc
-        url = https://github.com/maker2413/tf-vpc-module.git
