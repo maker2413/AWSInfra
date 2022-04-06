@@ -13,3 +13,11 @@ variable "index_document" {
   type    = string
   default = "index.html"
 }
+
+variable "project_tag" {
+  type    = string
+}
+
+variable "repo_tag" {
+  type    = string
+}

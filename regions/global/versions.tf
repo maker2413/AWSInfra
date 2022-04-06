@@ -1,1 +1,0 @@
-# --- regions/global/versions.tf ---

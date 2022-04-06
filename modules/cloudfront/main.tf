@@ -1,6 +1,6 @@
 # --- modules/cloudfront/main.tf ---
 
-resource "aws_cloudfront_distribution" "squids_s3_distribution" {
+resource "aws_cloudfront_distribution" "distribution" {
   origin {
     domain_name = var.domain_name
     origin_id   = var.domain_name
@@ -32,8 +32,9 @@ resource "aws_cloudfront_distribution" "squids_s3_distribution" {
 
   tags = {
     Environment = terraform.workspace
-    Name        = var.domain_name
-    Project     = "Squids"
+    Name        = var.name_tag
+    Project     = var.project_tag
+    Repo        = var.repo_tag
   }
 
   viewer_certificate {
