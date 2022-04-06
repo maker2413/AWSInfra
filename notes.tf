@@ -44,3 +44,25 @@ module "s3" {
   project_tag    = "Notes"
   repo_tag       = "github.com/maker2413/Notes"
 }
+
+module "acm" {
+  source = "./modules/acm"
+
+  alternative_domains = ["ethanp.dev"]
+  domain_name         = "*.ethanp.dev"
+  name_tag            = "ethanp.dev"
+  project_tag         = "Notes"
+  repo_tag            = "github.com/maker2413/Notes"
+  validation_method   = "DNS"
+}
+
+module "cloudfront" {
+  source = "./modules/cloudfront"
+
+  acm_arn     = module.acm.acm_arn
+  aliases     = ["ethanp.dev", "www.ethanp.dev"]
+  domain_name = module.s3.bucket_regional_domain_name
+  name_tag    = "ethanp.dev"
+  project_tag = "Notes"
+  repo_tag    = "github.com/maker2413/Notes"
+}
