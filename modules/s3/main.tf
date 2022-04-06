@@ -1,22 +1,32 @@
 # --- modules/s3/main.tf ---
 
-resource "aws_s3_bucket" "squids_s3" {
-  acl    = var.acl
+resource "aws_s3_bucket" "bucket" {
   bucket = var.bucket_name
-
-  website {
-    index_document = var.index_document
-  }
 
   tags = {
     Environment = terraform.workspace
     Name        = var.bucket_name
-    Project     = "Squids"
+    Project     = var.project_tag
+    Repo        = var.repo_tag
   }
 }
 
-resource "aws_s3_bucket_policy" "squids_s3_policy" {
-  bucket = aws_s3_bucket.squids_s3.id
+resource "aws_s3_bucket_acl" "bucket_acl" {
+  bucket = aws_s3_bucket.bucket.id
+
+  acl = var.acl
+}
+
+resource "aws_s3_bucket_website_configuration" "bucket_website_configuration" {
+  bucket = aws_s3_bucket.bucket.id
+
+  index_document {
+    suffix = var.index_document
+  }
+}
+
+resource "aws_s3_bucket_policy" "bucket_policy" {
+  bucket = aws_s3_bucket.bucket.id
 
   policy = jsonencode({
     Version = "2012-10-17"
@@ -28,8 +38,8 @@ resource "aws_s3_bucket_policy" "squids_s3_policy" {
         Principal = "*"
         Action    = "s3:GetObject"
         Resource = [
-          aws_s3_bucket.squids_s3.arn,
-          "${aws_s3_bucket.squids_s3.arn}/*",
+          aws_s3_bucket.bucket.arn,
+          "${aws_s3_bucket.bucket.arn}/*",
         ]
       },
     ]

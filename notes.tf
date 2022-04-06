@@ -3,7 +3,7 @@
 module "iam" {
   source = "./modules/iam/"
 
-  project_tag = "notes"
+  project_tag = "Notes"
   repo_tag    = "github.com/maker2413/Notes"
   username    = "notes-service-account"
 }
@@ -33,4 +33,14 @@ resource "aws_iam_user_policy" "notes_s3_policy" {
   ]
 }
 EOF
+}
+
+module "s3" {
+  source = "./modules/s3"
+
+  acl            = "public-read"
+  bucket_name    = "www.ethanp.dev"
+  index_document = "index.html"
+  project_tag    = "Notes"
+  repo_tag       = "github.com/maker2413/Notes"
 }
