@@ -1,6 +1,6 @@
 # --- notes.tf ---
 
-module "iam" {
+module "notes_iam" {
   source = "./modules/iam/"
 
   project_tag = "Notes"
@@ -9,12 +9,12 @@ module "iam" {
 }
 
 resource "aws_iam_access_key" "notes_access_key" {
-  user = module.iam.user.name
+  user = module.notes_iam.user.name
 }
 
 resource "aws_iam_user_policy" "notes_s3_policy" {
   name = "notes-service-account-s3-policy"
-  user = module.iam.user.name
+  user = module.notes_iam.user.name
 
   policy = <<EOF
 {
@@ -35,7 +35,7 @@ resource "aws_iam_user_policy" "notes_s3_policy" {
 EOF
 }
 
-module "s3" {
+module "notes_s3" {
   source = "./modules/s3"
 
   acl            = "public-read"
@@ -45,7 +45,7 @@ module "s3" {
   repo_tag       = "github.com/maker2413/Notes"
 }
 
-module "acm" {
+module "notes_acm" {
   source = "./modules/acm"
 
   alternative_domains = ["ethanp.dev"]
@@ -56,12 +56,12 @@ module "acm" {
   validation_method   = "DNS"
 }
 
-module "cloudfront" {
+module "notes_cloudfront" {
   source = "./modules/cloudfront"
 
-  acm_arn     = module.acm.acm_arn
+  acm_arn     = module.notes_acm.acm_arn
   aliases     = ["ethanp.dev", "www.ethanp.dev"]
-  domain_name = module.s3.bucket_regional_domain_name
+  domain_name = module.notes_s3.bucket_regional_domain_name
   name_tag    = "ethanp.dev"
   project_tag = "Notes"
   repo_tag    = "github.com/maker2413/Notes"
