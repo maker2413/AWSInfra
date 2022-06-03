@@ -9,12 +9,12 @@ module "dustinp_iam" {
 }
 
 resource "aws_iam_access_key" "dustinp_access_key" {
-  user = module.iam.user.name
+  user = module.dustinp_iam.user.name
 }
 
 resource "aws_iam_user_policy" "dustinp_s3_policy" {
   name = "dustinp-service-account-s3-policy"
-  user = module.iam.user.name
+  user = module.dustinp_iam.user.name
 
   policy = <<EOF
 {
