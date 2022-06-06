@@ -1,23 +1,23 @@
-# --- notes.tf ---
+# --- ethanp.tf ---
 
-module "notes_iam" {
+module "ethanp_iam" {
   source = "./modules/iam/"
 
-  username    = "notes-service-account"
+  username    = "ethanp-service-account"
 
   tags = {
-    Project = "Notes"
-    Repo    = "github.com/maker2413/Notes"
+    Project = "Website"
+    Repo    = "github.com/maker2413/Website"
   }
 }
 
-resource "aws_iam_access_key" "notes_access_key" {
-  user = module.notes_iam.user.name
+resource "aws_iam_access_key" "ethanp_access_key" {
+  user = module.ethanp_iam.user.name
 }
 
-resource "aws_iam_user_policy" "notes_s3_policy" {
-  name = "notes-service-account-s3-policy"
-  user = module.notes_iam.user.name
+resource "aws_iam_user_policy" "ethanp_s3_policy" {
+  name = "ethanp-service-account-s3-policy"
+  user = module.ethanp_iam.user.name
 
   policy = <<EOF
 {
@@ -38,7 +38,7 @@ resource "aws_iam_user_policy" "notes_s3_policy" {
 EOF
 }
 
-module "notes_s3" {
+module "ethanp_s3" {
   source = "./modules/s3"
 
   acl            = "public-read"
@@ -52,7 +52,7 @@ module "notes_s3" {
   }
 }
 
-module "notes_acm" {
+module "ethanp_acm" {
   source = "./modules/acm"
 
   alternative_domains = ["ethanp.dev"]
@@ -66,12 +66,12 @@ module "notes_acm" {
   }
 }
 
-module "notes_cloudfront" {
+module "ethanp_cloudfront" {
   source = "./modules/cloudfront"
 
-  acm_arn     = module.notes_acm.acm_arn
+  acm_arn     = module.ethanp_acm.acm_arn
   aliases     = ["ethanp.dev", "www.ethanp.dev"]
-  domain_name = module.notes_s3.bucket_regional_domain_name
+  domain_name = module.ethanp_s3.bucket_regional_domain_name
 
   tags = {
     Name    = "ethanp.dev"
