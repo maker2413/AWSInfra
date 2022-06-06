@@ -3,12 +3,13 @@
 resource "aws_s3_bucket" "bucket" {
   bucket = var.bucket_name
 
-  tags = {
-    Environment = terraform.workspace
-    Name        = var.bucket_name
-    Project     = var.project_tag
-    Repo        = var.repo_tag
-  }
+  tags = merge(
+    {
+      Environment = terraform.workspace
+      Module      = "s3"
+    },
+    var.tags,
+  )
 }
 
 resource "aws_s3_bucket_acl" "bucket_acl" {

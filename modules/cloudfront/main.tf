@@ -30,12 +30,13 @@ resource "aws_cloudfront_distribution" "distribution" {
     }
   }
 
-  tags = {
-    Environment = terraform.workspace
-    Name        = var.name_tag
-    Project     = var.project_tag
-    Repo        = var.repo_tag
-  }
+  tags = merge(
+    {
+      Environment = terraform.workspace
+      Module      = "cloudfront"
+    },
+    var.tags,
+  )
 
   viewer_certificate {
     acm_certificate_arn = var.acm_arn

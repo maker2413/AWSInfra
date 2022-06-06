@@ -3,9 +3,12 @@
 module "ethancpost_iam" {
   source = "./modules/iam/"
 
-  project_tag = "Website"
-  repo_tag    = "github.com/maker2413/Website"
   username    = "ethancpost-service-account"
+
+  tags = {
+    Project = "Website"
+    Repo    = "github.com/maker2413/Website"
+  }
 }
 
 resource "aws_iam_access_key" "ethancpost_access_key" {
@@ -41,8 +44,12 @@ module "ethancpost_s3" {
   acl            = "public-read"
   bucket_name    = "www.ethancpost.com"
   index_document = "index.html"
-  project_tag    = "Website"
-  repo_tag       = "github.com/maker2413/Website"
+
+  tags = {
+    Name    = "www.ethancpost.com"
+    Project = "Website"
+    Repo    = "github.com/maker2413/Website"
+  }
 }
 
 module "ethancpost_acm" {
@@ -50,10 +57,13 @@ module "ethancpost_acm" {
 
   alternative_domains = ["ethancpost.com"]
   domain_name         = "*.ethancpost.com"
-  name_tag            = "ethancpost.com"
-  project_tag         = "Website"
-  repo_tag            = "github.com/maker2413/Website"
   validation_method   = "DNS"
+
+  tags = {
+    Name      = "ethancpost.com"
+    Project   = "Website"
+    Repo      = "github.com/maker2413/Website"
+  }
 }
 
 module "ethancpost_cloudfront" {
@@ -62,7 +72,10 @@ module "ethancpost_cloudfront" {
   acm_arn     = module.ethancpost_acm.acm_arn
   aliases     = ["ethancpost.com", "www.ethancpost.com"]
   domain_name = module.ethancpost_s3.bucket_regional_domain_name
-  name_tag    = "ethancpost.com"
-  project_tag = "Website"
-  repo_tag    = "github.com/maker2413/Website"
+
+  tags = {
+    Name    = "ethancpost.com"
+    Project = "Website"
+    Repo    = "github.com/maker2413/Website"
+  }
 }

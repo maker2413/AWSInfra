@@ -3,9 +3,12 @@
 module "notes_iam" {
   source = "./modules/iam/"
 
-  project_tag = "Notes"
-  repo_tag    = "github.com/maker2413/Notes"
   username    = "notes-service-account"
+
+  tags = {
+    Project = "Notes"
+    Repo    = "github.com/maker2413/Notes"
+  }
 }
 
 resource "aws_iam_access_key" "notes_access_key" {
@@ -41,8 +44,12 @@ module "notes_s3" {
   acl            = "public-read"
   bucket_name    = "www.ethanp.dev"
   index_document = "index.html"
-  project_tag    = "Notes"
-  repo_tag       = "github.com/maker2413/Notes"
+
+  tags = {
+    Name    = "www.ethanp.dev"
+    Project = "Notes"
+    Repo    = "github.com/maker2413/Notes"
+  }
 }
 
 module "notes_acm" {
@@ -50,10 +57,13 @@ module "notes_acm" {
 
   alternative_domains = ["ethanp.dev"]
   domain_name         = "*.ethanp.dev"
-  name_tag            = "ethanp.dev"
-  project_tag         = "Notes"
-  repo_tag            = "github.com/maker2413/Notes"
   validation_method   = "DNS"
+
+  tags = {
+    Name    = "ethanp.dev"
+    Project = "Notes"
+    Repo    = "github.com/maker2413/Notes"
+  }
 }
 
 module "notes_cloudfront" {
@@ -62,7 +72,10 @@ module "notes_cloudfront" {
   acm_arn     = module.notes_acm.acm_arn
   aliases     = ["ethanp.dev", "www.ethanp.dev"]
   domain_name = module.notes_s3.bucket_regional_domain_name
-  name_tag    = "ethanp.dev"
-  project_tag = "Notes"
-  repo_tag    = "github.com/maker2413/Notes"
+
+  tags = {
+    Name    = "ethanp.dev"
+    Project = "Notes"
+    Repo    = "github.com/maker2413/Notes"
+  }
 }

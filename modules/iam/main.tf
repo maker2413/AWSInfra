@@ -3,9 +3,11 @@
 resource "aws_iam_user" "user" {
   name = var.username
 
-  tags = {
-    Module  = "iam"
-    Project = var.project_tag
-    Repo    = var.repo_tag
-  }
+  tags = merge(
+    {
+      Environment = terraform.workspace
+      Module      = "iam"
+    },
+    var.tags,
+  )
 }

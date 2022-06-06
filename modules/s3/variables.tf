@@ -14,10 +14,6 @@ variable "index_document" {
   default = "index.html"
 }
 
-variable "project_tag" {
-  type    = string
-}
-
-variable "repo_tag" {
-  type    = string
+variable "tags" {
+  type = map(string)
 }

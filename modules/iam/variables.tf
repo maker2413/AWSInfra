@@ -1,11 +1,7 @@
 # --- iam/variables.tf ---
 
-variable "project_tag" {
-  type    = string
-}
-
-variable "repo_tag" {
-  type    = string
+variable "tags" {
+  type    = map(string)
 }
 
 variable "username" {

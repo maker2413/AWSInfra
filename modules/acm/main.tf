@@ -9,10 +9,11 @@ resource "aws_acm_certificate" "cert" {
   subject_alternative_names = var.alternative_domains
   validation_method         = var.validation_method
 
-  tags = {
-    Environment = terraform.workspace
-    Name        = var.name_tag
-    Project     = var.project_tag
-    Repo        = var.repo_tag
-  }
+  tags = merge(
+    {
+      Environment = terraform.workspace
+      Module      = "acm"
+    },
+    var.tags,
+  )
 }

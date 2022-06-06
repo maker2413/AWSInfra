@@ -3,9 +3,12 @@
 module "dustinp_iam" {
   source = "./modules/iam/"
 
-  project_tag = "Notes"
-  repo_tag    = "github.com/kirigaine/dustinp.me-website"
   username    = "dustinp-service-account"
+
+  tags = {
+    Project = "Notes"
+    Repo    = "github.com/kirigaine/dustinp.me-website"
+  }
 }
 
 resource "aws_iam_access_key" "dustinp_access_key" {
@@ -41,8 +44,12 @@ module "dustinp_s3" {
   acl            = "public-read"
   bucket_name    = "www.dustinp.me"
   index_document = "index.html"
-  project_tag    = "Notes"
-  repo_tag       = "github.com/kirigaine/dustinp.me-website"
+
+  tags = {
+    Name    = "www.dustinp.me"
+    Project = "Notes"
+    Repo    = "github.com/kirigaine/dustinp.me-website"
+  }
 }
 
 module "dustinp_acm" {
@@ -50,10 +57,13 @@ module "dustinp_acm" {
 
   alternative_domains = ["dustinp.me"]
   domain_name         = "*.dustinp.me"
-  name_tag            = "dustinp.me"
-  project_tag         = "Notes"
-  repo_tag            = "github.com/kirigaine/dustinp.me-website"
   validation_method   = "DNS"
+
+  tags = {
+    Name    = "dustinp.me"
+    Project = "Notes"
+    Repo    = "github.com/kirigaine/dustinp.me-website"
+  }
 }
 
 module "dustinp_cloudfront" {
@@ -62,7 +72,10 @@ module "dustinp_cloudfront" {
   acm_arn     = module.dustinp_acm.acm_arn
   aliases     = ["dustinp.me", "www.dustinp.me"]
   domain_name = module.dustinp_s3.bucket_regional_domain_name
-  name_tag    = "dustinp.me"
-  project_tag = "Notes"
-  repo_tag    = "github.com/kirigaine/dustinp.me-website"
+
+  tags = {
+    Name    = "dustinp.me"
+    Project = "Notes"
+    Repo    = "github.com/kirigaine/dustinp.me-website"
+  }
 }
