@@ -79,3 +79,69 @@ module "ethanp_cloudfront" {
     Repo    = "github.com/maker2413/Notes"
   }
 }
+
+module "notes_ethanp_iam" {
+  source = "./modules/iam/"
+
+  username    = "notes-ethanp-service-account"
+
+  tags = {
+    Project = "Notes"
+    Repo    = "github.com/maker2413/Notes"
+  }
+}
+
+resource "aws_iam_access_key" "notes_ethanp_access_key" {
+  user = module.notes_ethanp_iam.user.name
+}
+
+resource "aws_iam_user_policy" "notes_ethanp_s3_policy" {
+  name = "notes-ethanp-service-account-s3-policy"
+  user = module.notes_ethanp_iam.user.name
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "ObjectLevel",
+      "Effect": "Allow",
+      "Action": [
+        "s3:PutObject",
+        "s3:GetObject",
+        "s3:DeleteObject"
+      ],
+      "Resource": "arn:aws:s3:::notes.ethanp.dev/*"
+    }
+  ]
+}
+EOF
+}
+
+module "notes_ethanp_s3" {
+  source = "./modules/s3"
+
+  acl            = "public-read"
+  bucket_name    = "notes.ethanp.dev"
+  index_document = "index.html"
+
+  tags = {
+    Name    = "notes.ethanp.dev"
+    Project = "Notes"
+    Repo    = "github.com/maker2413/Notes"
+  }
+}
+
+module "notes_ethanp_cloudfront" {
+  source = "./modules/cloudfront"
+
+  acm_arn     = module.ethanp_acm.acm_arn
+  aliases     = ["notes.ethanp.dev"]
+  domain_name = module.notes_ethanp_s3.bucket_regional_domain_name
+
+  tags = {
+    Name    = "notes.ethanp.dev"
+    Project = "Notes"
+    Repo    = "github.com/maker2413/Notes"
+  }
+}
