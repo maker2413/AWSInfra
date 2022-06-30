@@ -25,3 +25,8 @@ variable "root_object" {
   type    = string
   default = "index.html"
 }
+
+variable "viewer_protocol_policy" {
+  type    = string
+  default = "allow-all"
+}

@@ -14,7 +14,7 @@ resource "aws_cloudfront_distribution" "distribution" {
     allowed_methods        = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
     cached_methods         = ["GET", "HEAD"]
     target_origin_id       = var.domain_name
-    viewer_protocol_policy = "allow-all"
+    viewer_protocol_policy = var.viewer_protocol_policy
 
     forwarded_values {
       query_string = false
