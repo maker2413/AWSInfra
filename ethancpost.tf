@@ -1,5 +1,33 @@
 # --- ethancpost.tf ---
 
+module "ethancpost_acm" {
+  source = "./modules/acm"
+
+  alternative_domains = ["ethancpost.com"]
+  domain_name         = "*.ethancpost.com"
+  validation_method   = "DNS"
+
+  tags = {
+    Name      = "ethancpost.com"
+    Project   = "Website"
+    Repo      = "github.com/maker2413/Website"
+  }
+}
+
+module "static-site-test" {
+  source = "./modules/static-site"
+
+  acm_arn            = module.ethancpost_acm.acm_arn
+  cloudfront_aliases = ["ethancpost.com", "www.ethancpost.com"]
+  domain             = "www.ethancpost.com"
+
+  tags = {
+    Project = "Website"
+    Repo    = "github.com/maker2413/Website"
+  }
+  
+}
+
 module "ethancpost_iam" {
   source = "./modules/iam/"
 
@@ -49,20 +77,6 @@ module "ethancpost_s3" {
     Name    = "www.ethancpost.com"
     Project = "Website"
     Repo    = "github.com/maker2413/Website"
-  }
-}
-
-module "ethancpost_acm" {
-  source = "./modules/acm"
-
-  alternative_domains = ["ethancpost.com"]
-  domain_name         = "*.ethancpost.com"
-  validation_method   = "DNS"
-
-  tags = {
-    Name      = "ethancpost.com"
-    Project   = "Website"
-    Repo      = "github.com/maker2413/Website"
   }
 }
 
