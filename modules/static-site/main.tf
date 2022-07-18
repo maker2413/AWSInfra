@@ -63,9 +63,10 @@ module "static_site_s3" {
 module "static_site_cloudfront" {
   source = "../cloudfront"
 
-  acm_arn     = var.acm_arn
-  aliases     = var.cloudfront_aliases
-  domain_name = module.static_site_s3.bucket_regional_domain_name
+  acm_arn                = var.acm_arn
+  aliases                = var.cloudfront_aliases
+  domain_name            = module.static_site_s3.bucket_regional_domain_name
+  viewer_protocol_policy = var.viewer_protocol_policy
 
   tags = merge(
     {

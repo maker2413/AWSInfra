@@ -42,3 +42,8 @@ variable "s3_policy" {
 variable "tags" {
   type = map(string)
 }
+
+variable "viewer_protocol_policy" {
+  type    = string
+  default = "redirect-to-https"
+}
