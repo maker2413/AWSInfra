@@ -6,7 +6,7 @@ variable "acm_arn" {
 }
 
 variable "cloudfront_aliases" {
-  type    = list(string)
+  type = list(string)
 }
 
 variable "domain" {

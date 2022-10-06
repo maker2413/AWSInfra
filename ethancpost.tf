@@ -8,9 +8,9 @@ module "ethancpost_acm" {
   validation_method   = "DNS"
 
   tags = {
-    Name      = "ethancpost.com"
-    Project   = "Website"
-    Repo      = "github.com/maker2413/Website"
+    Name    = "ethancpost.com"
+    Project = "Website"
+    Repo    = "github.com/maker2413/Website"
   }
 }
 
@@ -24,7 +24,7 @@ module "ethancpost" {
   tags = {
     Project = "Website"
     Repo    = "github.com/maker2413/Website"
-  }  
+  }
 }
 
 module "notes" {
@@ -37,7 +37,7 @@ module "notes" {
   tags = {
     Project = "Notes"
     Repo    = "github.com/maker2413/Notes"
-  }  
+  }
 }
 
 module "blog" {
@@ -50,5 +50,5 @@ module "blog" {
   tags = {
     Project = "Blog"
     Repo    = "github.com/maker2413/Blog"
-  }  
+  }
 }

@@ -1,9 +1,9 @@
 # --- iam/variables.tf ---
 
 variable "tags" {
-  type    = map(string)
+  type = map(string)
 }
 
 variable "username" {
-  type    = string
+  type = string
 }
