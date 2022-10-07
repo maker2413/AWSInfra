@@ -27,7 +27,7 @@ module "ethancpost" {
   }
 }
 
-module "notes" {
+module "ethancpost_notes" {
   source = "./modules/static-site"
 
   acm_arn            = module.ethancpost_acm.acm_arn
@@ -40,7 +40,7 @@ module "notes" {
   }
 }
 
-module "blog" {
+module "ethancpost_blog" {
   source = "./modules/static-site"
 
   acm_arn            = module.ethancpost_acm.acm_arn
