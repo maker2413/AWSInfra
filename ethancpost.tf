@@ -52,3 +52,16 @@ module "ethancpost_blog" {
     Repo    = "github.com/maker2413/Blog"
   }
 }
+
+module "ethancpost_emacs" {
+  source = "./modules/static-site"
+
+  acm_arn            = module.ethancpost_acm.acm_arn
+  cloudfront_aliases = ["emacs.ethancpost.com"]
+  domain             = "emacs.ethancpost.com"
+
+  tags = {
+    Project = "Emacs"
+    Repo    = "github.com/maker2413/Emacs"
+  }
+}
