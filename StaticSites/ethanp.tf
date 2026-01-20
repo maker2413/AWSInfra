@@ -1,7 +1,7 @@
-# --- ethanp.tf ---
+# --- StaticSites/ethanp.tf ---
 
 module "ethanp_acm" {
-  source = "./modules/acm"
+  source = "../modules/acm"
 
   alternative_domains = ["ethanp.dev"]
   domain_name         = "*.ethanp.dev"
@@ -15,7 +15,7 @@ module "ethanp_acm" {
 }
 
 module "ethanp" {
-  source = "./modules/static-site"
+  source = "../modules/static-site"
 
   acm_arn            = module.ethanp_acm.acm_arn
   cloudfront_aliases = ["ethanp.dev", "www.ethanp.dev"]
@@ -28,7 +28,7 @@ module "ethanp" {
 }
 
 module "ethanp_notes" {
-  source = "./modules/static-site"
+  source = "../modules/static-site"
 
   acm_arn            = module.ethanp_acm.acm_arn
   cloudfront_aliases = ["notes.ethanp.dev"]
@@ -41,7 +41,7 @@ module "ethanp_notes" {
 }
 
 module "ethanp_blog" {
-  source = "./modules/static-site"
+  source = "../modules/static-site"
 
   acm_arn            = module.ethanp_acm.acm_arn
   cloudfront_aliases = ["blog.ethanp.dev"]
@@ -54,7 +54,7 @@ module "ethanp_blog" {
 }
 
 module "ethanp_emacs" {
-  source = "./modules/static-site"
+  source = "../modules/static-site"
 
   acm_arn            = module.ethanp_acm.acm_arn
   cloudfront_aliases = ["emacs.ethanp.dev"]

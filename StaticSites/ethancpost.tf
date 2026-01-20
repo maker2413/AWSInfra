@@ -1,7 +1,7 @@
-# --- ethancpost.tf ---
+# --- StaticSites/ethancpost.tf ---
 
 module "ethancpost_acm" {
-  source = "./modules/acm"
+  source = "../modules/acm"
 
   alternative_domains = ["ethancpost.com"]
   domain_name         = "*.ethancpost.com"
@@ -15,7 +15,7 @@ module "ethancpost_acm" {
 }
 
 module "ethancpost" {
-  source = "./modules/static-site"
+  source = "../modules/static-site"
 
   acm_arn            = module.ethancpost_acm.acm_arn
   cloudfront_aliases = ["ethancpost.com", "www.ethancpost.com"]
@@ -28,7 +28,7 @@ module "ethancpost" {
 }
 
 module "ethancpost_notes" {
-  source = "./modules/static-site"
+  source = "../modules/static-site"
 
   acm_arn            = module.ethancpost_acm.acm_arn
   cloudfront_aliases = ["notes.ethancpost.com"]
@@ -41,7 +41,7 @@ module "ethancpost_notes" {
 }
 
 module "ethancpost_blog" {
-  source = "./modules/static-site"
+  source = "../modules/static-site"
 
   acm_arn            = module.ethancpost_acm.acm_arn
   cloudfront_aliases = ["blog.ethancpost.com"]
@@ -54,7 +54,7 @@ module "ethancpost_blog" {
 }
 
 module "ethancpost_emacs" {
-  source = "./modules/static-site"
+  source = "../modules/static-site"
 
   acm_arn            = module.ethancpost_acm.acm_arn
   cloudfront_aliases = ["emacs.ethancpost.com"]

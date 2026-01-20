@@ -1,7 +1,7 @@
-# --- dakotaadams.tf ---
+# --- StaticSites/dakotaadams.tf ---
 
 module "dakotaadams_acm" {
-  source = "./modules/acm"
+  source = "../modules/acm"
 
   alternative_domains = ["dakotaadams.tech"]
   domain_name         = "*.dakotaadams.tech"
@@ -15,7 +15,7 @@ module "dakotaadams_acm" {
 }
 
 module "dakotaadams" {
-  source = "./modules/static-site"
+  source = "../modules/static-site"
 
   acm_arn            = module.dakotaadams_acm.acm_arn
   cloudfront_aliases = ["dakotaadams.tech", "www.dakotaadams.tech"]

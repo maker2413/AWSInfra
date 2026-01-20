@@ -1,4 +1,4 @@
-# --- variables.tf ---
+# --- StaticSites/variables.tf ---
 
 variable "aws_region" {
   type    = string

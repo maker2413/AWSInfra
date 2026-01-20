@@ -1,7 +1,7 @@
-# --- dustinp.tf ---
+# --- StaticSites/dustinp.tf ---
 
 module "dustinp_acm" {
-  source = "./modules/acm"
+  source = "../modules/acm"
 
   alternative_domains = ["dustinp.me"]
   domain_name         = "*.dustinp.me"
@@ -15,7 +15,7 @@ module "dustinp_acm" {
 }
 
 module "dustinp" {
-  source = "./modules/static-site"
+  source = "../modules/static-site"
 
   acm_arn            = module.dustinp_acm.acm_arn
   cloudfront_aliases = ["dustinp.me", "www.dustinp.me"]

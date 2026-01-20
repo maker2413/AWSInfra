@@ -1,4 +1,4 @@
-# --- external-secrets.tf ---
+# --- StaticSites/external-secrets.tf ---
 
 data "aws_caller_identity" "current" {}
 
