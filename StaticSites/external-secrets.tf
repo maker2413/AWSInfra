@@ -10,13 +10,13 @@ resource "aws_iam_user_policy" "ssm_read" {
   name = "external-secrets-ssm-read"
   user = aws_iam_user.external_secrets.name
   policy = jsonencode({
-    Version   = "2012-10-17"
+    Version = "2012-10-17"
     Statement = concat(
       [
         {
-          Sid      = "ReadParameters"
-          Effect   = "Allow"
-          Action   = [
+          Sid    = "ReadParameters"
+          Effect = "Allow"
+          Action = [
             "ssm:GetParameter",
             "ssm:GetParameters",
             "ssm:GetParametersByPath"
@@ -26,9 +26,9 @@ resource "aws_iam_user_policy" "ssm_read" {
       ],
       [
         {
-          Sid      = "DecryptSecureString"
-          Effect   = "Allow"
-          Action   = ["kms:Decrypt"]
+          Sid    = "DecryptSecureString"
+          Effect = "Allow"
+          Action = ["kms:Decrypt"]
           # Using * with a condition restricts decrypt usage only when invoked via SSM in this region
           Resource = "*"
           Condition = {

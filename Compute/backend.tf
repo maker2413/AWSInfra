@@ -1,4 +1,4 @@
-# --- StaticSites/backend.tf ---
+# --- Compute/backend.tf ---
 
 terraform {
   backend "s3" {
@@ -6,7 +6,7 @@ terraform {
     encrypt = true
 
     key                  = "terraform.tfstate"
-    workspace_key_prefix = "StaticSites"
+    workspace_key_prefix = "Compute"
 
     region = "us-west-2"
   }
