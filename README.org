@@ -1,4 +1,4 @@
-#+TITLE: AWS Terraform
+#+TITLE: AWS Infra
 
-This is the terraform I have written for my AWS sandbox environment:
-[[https://github.com/maker2413/AWSInfra]]
+This repository contains the terraform I have written for my AWS sandbox
+environment: [[https://github.com/maker2413/AWSInfra]].
